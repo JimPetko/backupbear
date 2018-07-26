@@ -1,0 +1,10 @@
+E:\Repos\BackUpBear\BackUpBear\bin\x86\Debug\BackUpBear.exe.config
+E:\Repos\BackUpBear\BackUpBear\bin\x86\Debug\BackUpBear.exe
+E:\Repos\BackUpBear\BackUpBear\bin\x86\Debug\BackUpBear.pdb
+E:\Repos\BackUpBear\BackUpBear\obj\x86\Debug\BackUpBear.Form1.resources
+E:\Repos\BackUpBear\BackUpBear\obj\x86\Debug\BackUpBear.Properties.Resources.resources
+E:\Repos\BackUpBear\BackUpBear\obj\x86\Debug\BackUpBear.csproj.GenerateResource.Cache
+E:\Repos\BackUpBear\BackUpBear\obj\x86\Debug\BackUpBear.csproj.CoreCompileInputs.cache
+E:\Repos\BackUpBear\BackUpBear\obj\x86\Debug\BackUpBear.exe
+E:\Repos\BackUpBear\BackUpBear\obj\x86\Debug\BackUpBear.pdb
+E:\Repos\BackUpBear\BackUpBear\obj\x86\Debug\BackUpBear.csprojResolveAssemblyReference.cache
