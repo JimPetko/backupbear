@@ -9,6 +9,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO.Compression;
+using SharpCompress.Archives;
+using SharpCompress.Archives.Zip;
+using SharpCompress.Common;
+using SharpCompress.Archives.Rar;
+using SharpCompress.Archives.SevenZip;
+using System.Security.AccessControl;
+using System.Security.Principal;
 
 namespace BackUpBear
 {
@@ -84,38 +91,74 @@ namespace BackUpBear
         
         private void But_StartBackup_Click(object sender, EventArgs e)
         {
+            progressBar1.Visible = true;
+            progressBar1.Update();
+            //check folder access for source dir
             int index = 0;
+            string NtAccountName = System.Net.NetworkInformation.IPGlobalProperties.GetIPGlobalProperties().DomainName +@"\Administrator";
+            NTAccount nta = new NTAccount(NtAccountName);
+            string destPath = tb_BackupToDir.Text.ToString();
+            destPath.Replace(@"\r\n","");
+            
             foreach (string s in list_DirToBackup.Items)
             {
+                string sourceDir = s;
+                sourceDir = sourceDir.Trim('\r','\n');
+                s.Replace("\r\n",string.Empty);
+                
                 Directory.CreateDirectory(tb_BackupToDir.Text.ToString() + "\\Backup");
-                File.SetAttributes(tb_BackupToDir.Text.ToString() + "\\Backup", FileAttributes.Normal);
+                File.SetAttributes(destPath + "\\Backup", FileAttributes.Normal);
+                
                 if (cb_Compress.Checked)
                 {
                     if (radbut_Zip.Checked)
                     {
-                        
-                        ZipFile.CreateFromDirectory(s, tb_BackupToDir.Text.ToString() + "\\Backup\\" + index + ".zip");
+                        using (var archive = ZipArchive.Create())
+                        {
+                            progressBar1.Update();
+                            archive.AddAllFromDirectory(sourceDir);
+                            archive.SaveTo(tb_BackupToDir.Text.ToString() + "\\Backup " + index + ".zip", CompressionType.Deflate);
+                        }
                     }
                     if (radbut_Rar.Checked)
                     {
-                        ZipFile.CreateFromDirectory(s, tb_BackupToDir.Text.ToString() + "\\Backup " + index + ".rar");
+                        using (var archive = ZipArchive.Create())
+                        {
+                            progressBar1.Update();
+                            archive.AddAllFromDirectory(sourceDir);
+                            archive.SaveTo(destPath + "\\Backup " + index + ".rar", CompressionType.Rar);
+                        }
                     }
                     if (radbut_7z.Checked)
                     {
-                        ZipFile.CreateFromDirectory(s, tb_BackupToDir.Text.ToString() + "\\Backup " + index + ".7z");
+                        using (var archive = ZipArchive.Create())
+                        {
+                            progressBar1.Update();
+                            archive.AddAllFromDirectory(sourceDir);
+                            archive.SaveTo(destPath + "\\Backup " + index + ".7z", CompressionType.LZMA);
+                        }
                     }
                 }
                 else
                 {
-                    
-
+                    string[] files = Directory.GetFiles(sourceDir);
+ 
+                    for (int i = 0; i < files.Length; i++)
+                    {
+                        progressBar1.Update();
+                        Directory.CreateDirectory(destPath + "\\Backup\\Backup " + index.ToString());
+                        File.Copy(files[i], destPath+"\\Backup\\Backup "+index.ToString()+"\\"+ Path.GetFileName(files[i]), true);
+                    }
                 }
+                index++;
             }
+            
         }
 
         private void but_Close_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
+        
     }
 }

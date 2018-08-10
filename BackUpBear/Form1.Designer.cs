@@ -41,12 +41,11 @@
             this.radbut_Rar = new System.Windows.Forms.RadioButton();
             this.radbut_7z = new System.Windows.Forms.RadioButton();
             this.But_StartBackup = new System.Windows.Forms.Button();
-            this.but_TestMapDrive = new System.Windows.Forms.Button();
-            this.but_TestDirAccess = new System.Windows.Forms.Button();
             this.but_Close = new System.Windows.Forms.Button();
             this.fb_DirToBackup = new System.Windows.Forms.FolderBrowserDialog();
             this.fb_BackupDir = new System.Windows.Forms.FolderBrowserDialog();
             this.tb_BackupToDir = new System.Windows.Forms.TextBox();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             ((System.ComponentModel.ISupportInitialize)(this.pb_DirectoryMinus)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pb_MappedPlus)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pb_DirectoryAdd)).BeginInit();
@@ -68,7 +67,7 @@
             this.list_DirToBackup.FormattingEnabled = true;
             this.list_DirToBackup.Location = new System.Drawing.Point(16, 80);
             this.list_DirToBackup.Name = "list_DirToBackup";
-            this.list_DirToBackup.Size = new System.Drawing.Size(628, 82);
+            this.list_DirToBackup.Size = new System.Drawing.Size(295, 82);
             this.list_DirToBackup.TabIndex = 2;
             // 
             // pb_DirectoryMinus
@@ -85,7 +84,7 @@
             // pb_MappedPlus
             // 
             this.pb_MappedPlus.Image = global::BackUpBear.Properties.Resources.if_Add_32431;
-            this.pb_MappedPlus.Location = new System.Drawing.Point(16, 212);
+            this.pb_MappedPlus.Location = new System.Drawing.Point(16, 192);
             this.pb_MappedPlus.Name = "pb_MappedPlus";
             this.pb_MappedPlus.Size = new System.Drawing.Size(20, 20);
             this.pb_MappedPlus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -107,7 +106,7 @@
             // pb_MappedMinus
             // 
             this.pb_MappedMinus.Image = global::BackUpBear.Properties.Resources.if_onebit_32_12606;
-            this.pb_MappedMinus.Location = new System.Drawing.Point(53, 212);
+            this.pb_MappedMinus.Location = new System.Drawing.Point(53, 192);
             this.pb_MappedMinus.Name = "pb_MappedMinus";
             this.pb_MappedMinus.Size = new System.Drawing.Size(20, 20);
             this.pb_MappedMinus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -119,7 +118,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(13, 185);
+            this.label2.Location = new System.Drawing.Point(13, 165);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(79, 19);
             this.label2.TabIndex = 8;
@@ -128,7 +127,7 @@
             // cb_Compress
             // 
             this.cb_Compress.AutoSize = true;
-            this.cb_Compress.Location = new System.Drawing.Point(699, 109);
+            this.cb_Compress.Location = new System.Drawing.Point(202, 293);
             this.cb_Compress.Name = "cb_Compress";
             this.cb_Compress.Size = new System.Drawing.Size(107, 17);
             this.cb_Compress.TabIndex = 9;
@@ -139,7 +138,7 @@
             // radbut_Zip
             // 
             this.radbut_Zip.AutoSize = true;
-            this.radbut_Zip.Location = new System.Drawing.Point(726, 133);
+            this.radbut_Zip.Location = new System.Drawing.Point(16, 270);
             this.radbut_Zip.Name = "radbut_Zip";
             this.radbut_Zip.Size = new System.Drawing.Size(45, 17);
             this.radbut_Zip.TabIndex = 10;
@@ -152,7 +151,7 @@
             // radbut_Rar
             // 
             this.radbut_Rar.AutoSize = true;
-            this.radbut_Rar.Location = new System.Drawing.Point(726, 156);
+            this.radbut_Rar.Location = new System.Drawing.Point(67, 270);
             this.radbut_Rar.Name = "radbut_Rar";
             this.radbut_Rar.Size = new System.Drawing.Size(51, 17);
             this.radbut_Rar.TabIndex = 11;
@@ -165,7 +164,7 @@
             // radbut_7z
             // 
             this.radbut_7z.AutoSize = true;
-            this.radbut_7z.Location = new System.Drawing.Point(726, 179);
+            this.radbut_7z.Location = new System.Drawing.Point(124, 270);
             this.radbut_7z.Name = "radbut_7z";
             this.radbut_7z.Size = new System.Drawing.Size(41, 17);
             this.radbut_7z.TabIndex = 12;
@@ -180,7 +179,7 @@
             this.But_StartBackup.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.But_StartBackup.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.But_StartBackup.ForeColor = System.Drawing.Color.White;
-            this.But_StartBackup.Location = new System.Drawing.Point(667, 80);
+            this.But_StartBackup.Location = new System.Drawing.Point(202, 264);
             this.But_StartBackup.Name = "But_StartBackup";
             this.But_StartBackup.Size = new System.Drawing.Size(107, 23);
             this.But_StartBackup.TabIndex = 13;
@@ -188,36 +187,12 @@
             this.But_StartBackup.UseVisualStyleBackColor = false;
             this.But_StartBackup.Click += new System.EventHandler(this.But_StartBackup_Click);
             // 
-            // but_TestMapDrive
-            // 
-            this.but_TestMapDrive.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.but_TestMapDrive.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.but_TestMapDrive.ForeColor = System.Drawing.Color.White;
-            this.but_TestMapDrive.Location = new System.Drawing.Point(111, 185);
-            this.but_TestMapDrive.Name = "but_TestMapDrive";
-            this.but_TestMapDrive.Size = new System.Drawing.Size(107, 23);
-            this.but_TestMapDrive.TabIndex = 14;
-            this.but_TestMapDrive.Text = "Test Directories";
-            this.but_TestMapDrive.UseVisualStyleBackColor = false;
-            // 
-            // but_TestDirAccess
-            // 
-            this.but_TestDirAccess.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.but_TestDirAccess.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.but_TestDirAccess.ForeColor = System.Drawing.Color.White;
-            this.but_TestDirAccess.Location = new System.Drawing.Point(231, 19);
-            this.but_TestDirAccess.Name = "but_TestDirAccess";
-            this.but_TestDirAccess.Size = new System.Drawing.Size(107, 23);
-            this.but_TestDirAccess.TabIndex = 15;
-            this.but_TestDirAccess.Text = "Test Directories";
-            this.but_TestDirAccess.UseVisualStyleBackColor = false;
-            // 
             // but_Close
             // 
             this.but_Close.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.but_Close.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.but_Close.ForeColor = System.Drawing.Color.White;
-            this.but_Close.Location = new System.Drawing.Point(667, 248);
+            this.but_Close.Location = new System.Drawing.Point(229, 12);
             this.but_Close.Name = "but_Close";
             this.but_Close.Size = new System.Drawing.Size(107, 23);
             this.but_Close.TabIndex = 16;
@@ -235,21 +210,29 @@
             // 
             // tb_BackupToDir
             // 
-            this.tb_BackupToDir.Location = new System.Drawing.Point(16, 251);
+            this.tb_BackupToDir.Location = new System.Drawing.Point(14, 238);
             this.tb_BackupToDir.Name = "tb_BackupToDir";
-            this.tb_BackupToDir.Size = new System.Drawing.Size(628, 20);
+            this.tb_BackupToDir.Size = new System.Drawing.Size(295, 20);
             this.tb_BackupToDir.TabIndex = 17;
+            // 
+            // progressBar1
+            // 
+            this.progressBar1.ForeColor = System.Drawing.Color.Firebrick;
+            this.progressBar1.Location = new System.Drawing.Point(14, 222);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(295, 10);
+            this.progressBar1.TabIndex = 18;
+            this.progressBar1.Visible = false;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(75)))), ((int)(((byte)(75)))));
-            this.ClientSize = new System.Drawing.Size(817, 339);
+            this.ClientSize = new System.Drawing.Size(335, 323);
+            this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.tb_BackupToDir);
             this.Controls.Add(this.but_Close);
-            this.Controls.Add(this.but_TestDirAccess);
-            this.Controls.Add(this.but_TestMapDrive);
             this.Controls.Add(this.But_StartBackup);
             this.Controls.Add(this.radbut_7z);
             this.Controls.Add(this.radbut_Rar);
@@ -263,7 +246,9 @@
             this.Controls.Add(this.list_DirToBackup);
             this.Controls.Add(this.label1);
             this.ForeColor = System.Drawing.Color.White;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "Form1";
             this.Text = "Backup Bear";
             ((System.ComponentModel.ISupportInitialize)(this.pb_DirectoryMinus)).EndInit();
@@ -289,12 +274,11 @@
         private System.Windows.Forms.RadioButton radbut_Rar;
         private System.Windows.Forms.RadioButton radbut_7z;
         private System.Windows.Forms.Button But_StartBackup;
-        private System.Windows.Forms.Button but_TestMapDrive;
-        private System.Windows.Forms.Button but_TestDirAccess;
         private System.Windows.Forms.Button but_Close;
         private System.Windows.Forms.FolderBrowserDialog fb_DirToBackup;
         private System.Windows.Forms.FolderBrowserDialog fb_BackupDir;
         private System.Windows.Forms.TextBox tb_BackupToDir;
+        private System.Windows.Forms.ProgressBar progressBar1;
     }
 }
 

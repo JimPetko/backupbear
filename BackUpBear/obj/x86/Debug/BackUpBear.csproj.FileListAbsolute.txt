@@ -8,3 +8,15 @@ E:\Repos\BackUpBear\BackUpBear\obj\x86\Debug\BackUpBear.csproj.CoreCompileInputs
 E:\Repos\BackUpBear\BackUpBear\obj\x86\Debug\BackUpBear.exe
 E:\Repos\BackUpBear\BackUpBear\obj\x86\Debug\BackUpBear.pdb
 E:\Repos\BackUpBear\BackUpBear\obj\x86\Debug\BackUpBear.csprojResolveAssemblyReference.cache
+C:\Users\James\Documents\Visual Studio 2015\Projects\BackupBear\backupbear\BackUpBear\bin\x86\Debug\BackUpBear.exe.config
+C:\Users\James\Documents\Visual Studio 2015\Projects\BackupBear\backupbear\BackUpBear\bin\x86\Debug\BackUpBear.exe
+C:\Users\James\Documents\Visual Studio 2015\Projects\BackupBear\backupbear\BackUpBear\bin\x86\Debug\BackUpBear.pdb
+C:\Users\James\Documents\Visual Studio 2015\Projects\BackupBear\backupbear\BackUpBear\bin\x86\Debug\SharpCompress.dll
+C:\Users\James\Documents\Visual Studio 2015\Projects\BackupBear\backupbear\BackUpBear\obj\x86\Debug\BackUpBear.Form1.resources
+C:\Users\James\Documents\Visual Studio 2015\Projects\BackupBear\backupbear\BackUpBear\obj\x86\Debug\BackUpBear.Properties.Resources.resources
+C:\Users\James\Documents\Visual Studio 2015\Projects\BackupBear\backupbear\BackUpBear\obj\x86\Debug\BackUpBear.csproj.GenerateResource.cache
+C:\Users\James\Documents\Visual Studio 2015\Projects\BackupBear\backupbear\BackUpBear\obj\x86\Debug\BackUpBear.csproj.CoreCompileInputs.cache
+C:\Users\James\Documents\Visual Studio 2015\Projects\BackupBear\backupbear\BackUpBear\obj\x86\Debug\BackUpBear.csproj.CopyComplete
+C:\Users\James\Documents\Visual Studio 2015\Projects\BackupBear\backupbear\BackUpBear\obj\x86\Debug\BackUpBear.exe
+C:\Users\James\Documents\Visual Studio 2015\Projects\BackupBear\backupbear\BackUpBear\obj\x86\Debug\BackUpBear.pdb
+C:\Users\James\Documents\Visual Studio 2015\Projects\BackupBear\backupbear\BackUpBear\obj\x86\Debug\BackUpBear.csprojAssemblyReference.cache
