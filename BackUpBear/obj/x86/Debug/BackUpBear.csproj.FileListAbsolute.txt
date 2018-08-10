@@ -19,4 +19,3 @@ C:\Users\James\Documents\Visual Studio 2015\Projects\BackupBear\backupbear\BackU
 C:\Users\James\Documents\Visual Studio 2015\Projects\BackupBear\backupbear\BackUpBear\obj\x86\Debug\BackUpBear.csproj.CopyComplete
 C:\Users\James\Documents\Visual Studio 2015\Projects\BackupBear\backupbear\BackUpBear\obj\x86\Debug\BackUpBear.exe
 C:\Users\James\Documents\Visual Studio 2015\Projects\BackupBear\backupbear\BackUpBear\obj\x86\Debug\BackUpBear.pdb
-C:\Users\James\Documents\Visual Studio 2015\Projects\BackupBear\backupbear\BackUpBear\obj\x86\Debug\BackUpBear.csprojAssemblyReference.cache

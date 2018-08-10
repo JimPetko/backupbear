@@ -103,12 +103,12 @@ namespace BackUpBear
             foreach (string s in list_DirToBackup.Items)
             {
                 string sourceDir = s;
-                sourceDir = sourceDir.Trim('\r','\n');
+                
                 s.Replace("\r\n",string.Empty);
                 
                 Directory.CreateDirectory(tb_BackupToDir.Text.ToString() + "\\Backup");
                 File.SetAttributes(destPath + "\\Backup", FileAttributes.Normal);
-                
+                sourceDir = sourceDir.Trim('\r', '\n');
                 if (cb_Compress.Checked)
                 {
                     if (radbut_Zip.Checked)
@@ -133,7 +133,7 @@ namespace BackUpBear
                     {
                         using (var archive = ZipArchive.Create())
                         {
-                            progressBar1.Update();
+                            
                             archive.AddAllFromDirectory(sourceDir);
                             archive.SaveTo(destPath + "\\Backup " + index + ".7z", CompressionType.LZMA);
                         }
@@ -141,6 +141,7 @@ namespace BackUpBear
                 }
                 else
                 {
+                    
                     string[] files = Directory.GetFiles(sourceDir);
  
                     for (int i = 0; i < files.Length; i++)
