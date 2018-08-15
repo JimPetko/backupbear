@@ -45,7 +45,6 @@
             this.fb_DirToBackup = new System.Windows.Forms.FolderBrowserDialog();
             this.fb_BackupDir = new System.Windows.Forms.FolderBrowserDialog();
             this.tb_BackupToDir = new System.Windows.Forms.TextBox();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             ((System.ComponentModel.ISupportInitialize)(this.pb_DirectoryMinus)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pb_MappedPlus)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pb_DirectoryAdd)).BeginInit();
@@ -215,22 +214,12 @@
             this.tb_BackupToDir.Size = new System.Drawing.Size(295, 20);
             this.tb_BackupToDir.TabIndex = 17;
             // 
-            // progressBar1
-            // 
-            this.progressBar1.ForeColor = System.Drawing.Color.Firebrick;
-            this.progressBar1.Location = new System.Drawing.Point(14, 222);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(295, 10);
-            this.progressBar1.TabIndex = 18;
-            this.progressBar1.Visible = false;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(75)))), ((int)(((byte)(75)))));
             this.ClientSize = new System.Drawing.Size(335, 323);
-            this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.tb_BackupToDir);
             this.Controls.Add(this.but_Close);
             this.Controls.Add(this.But_StartBackup);
@@ -251,6 +240,7 @@
             this.MaximizeBox = false;
             this.Name = "Form1";
             this.Text = "Backup Bear";
+            this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pb_DirectoryMinus)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pb_MappedPlus)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pb_DirectoryAdd)).EndInit();
@@ -278,7 +268,6 @@
         private System.Windows.Forms.FolderBrowserDialog fb_DirToBackup;
         private System.Windows.Forms.FolderBrowserDialog fb_BackupDir;
         private System.Windows.Forms.TextBox tb_BackupToDir;
-        private System.Windows.Forms.ProgressBar progressBar1;
     }
 }
 
