@@ -31,10 +31,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.label1 = new System.Windows.Forms.Label();
             this.list_DirToBackup = new System.Windows.Forms.ListBox();
-            this.pb_DirectoryMinus = new System.Windows.Forms.PictureBox();
-            this.pb_MappedPlus = new System.Windows.Forms.PictureBox();
-            this.pb_DirectoryAdd = new System.Windows.Forms.PictureBox();
-            this.pb_MappedMinus = new System.Windows.Forms.PictureBox();
             this.label2 = new System.Windows.Forms.Label();
             this.cb_Compress = new System.Windows.Forms.CheckBox();
             this.radbut_Zip = new System.Windows.Forms.RadioButton();
@@ -46,10 +42,17 @@
             this.fb_BackupDir = new System.Windows.Forms.FolderBrowserDialog();
             this.tb_BackupToDir = new System.Windows.Forms.TextBox();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.pb_Bear = new System.Windows.Forms.PictureBox();
+            this.pb_MappedMinus = new System.Windows.Forms.PictureBox();
+            this.pb_DirectoryMinus = new System.Windows.Forms.PictureBox();
+            this.pb_MappedPlus = new System.Windows.Forms.PictureBox();
+            this.pb_DirectoryAdd = new System.Windows.Forms.PictureBox();
+            this.lab_Bear = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_Bear)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_MappedMinus)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pb_DirectoryMinus)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pb_MappedPlus)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pb_DirectoryAdd)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pb_MappedMinus)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -69,50 +72,6 @@
             this.list_DirToBackup.Name = "list_DirToBackup";
             this.list_DirToBackup.Size = new System.Drawing.Size(295, 82);
             this.list_DirToBackup.TabIndex = 2;
-            // 
-            // pb_DirectoryMinus
-            // 
-            this.pb_DirectoryMinus.Image = global::BackUpBear.Properties.Resources.if_onebit_32_12606;
-            this.pb_DirectoryMinus.Location = new System.Drawing.Point(53, 52);
-            this.pb_DirectoryMinus.Name = "pb_DirectoryMinus";
-            this.pb_DirectoryMinus.Size = new System.Drawing.Size(20, 20);
-            this.pb_DirectoryMinus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pb_DirectoryMinus.TabIndex = 6;
-            this.pb_DirectoryMinus.TabStop = false;
-            this.pb_DirectoryMinus.Click += new System.EventHandler(this.pb_DirectoryMinus_Click);
-            // 
-            // pb_MappedPlus
-            // 
-            this.pb_MappedPlus.Image = global::BackUpBear.Properties.Resources.if_Add_32431;
-            this.pb_MappedPlus.Location = new System.Drawing.Point(16, 192);
-            this.pb_MappedPlus.Name = "pb_MappedPlus";
-            this.pb_MappedPlus.Size = new System.Drawing.Size(20, 20);
-            this.pb_MappedPlus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pb_MappedPlus.TabIndex = 5;
-            this.pb_MappedPlus.TabStop = false;
-            this.pb_MappedPlus.Click += new System.EventHandler(this.pb_MappedPlus_Click);
-            // 
-            // pb_DirectoryAdd
-            // 
-            this.pb_DirectoryAdd.Image = global::BackUpBear.Properties.Resources.if_Add_32431;
-            this.pb_DirectoryAdd.Location = new System.Drawing.Point(16, 52);
-            this.pb_DirectoryAdd.Name = "pb_DirectoryAdd";
-            this.pb_DirectoryAdd.Size = new System.Drawing.Size(20, 20);
-            this.pb_DirectoryAdd.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pb_DirectoryAdd.TabIndex = 4;
-            this.pb_DirectoryAdd.TabStop = false;
-            this.pb_DirectoryAdd.Click += new System.EventHandler(this.pb_DirectoryAdd_Click);
-            // 
-            // pb_MappedMinus
-            // 
-            this.pb_MappedMinus.Image = global::BackUpBear.Properties.Resources.if_onebit_32_12606;
-            this.pb_MappedMinus.Location = new System.Drawing.Point(53, 192);
-            this.pb_MappedMinus.Name = "pb_MappedMinus";
-            this.pb_MappedMinus.Size = new System.Drawing.Size(20, 20);
-            this.pb_MappedMinus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pb_MappedMinus.TabIndex = 7;
-            this.pb_MappedMinus.TabStop = false;
-            this.pb_MappedMinus.Click += new System.EventHandler(this.pb_MappedMinus_Click);
             // 
             // label2
             // 
@@ -224,12 +183,80 @@
             this.progressBar1.TabIndex = 18;
             this.progressBar1.Visible = false;
             // 
+            // pb_Bear
+            // 
+            this.pb_Bear.Image = global::BackUpBear.Properties.Resources.Bear;
+            this.pb_Bear.Location = new System.Drawing.Point(317, 80);
+            this.pb_Bear.Name = "pb_Bear";
+            this.pb_Bear.Size = new System.Drawing.Size(88, 82);
+            this.pb_Bear.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pb_Bear.TabIndex = 19;
+            this.pb_Bear.TabStop = false;
+            this.pb_Bear.Visible = false;
+            // 
+            // pb_MappedMinus
+            // 
+            this.pb_MappedMinus.Image = global::BackUpBear.Properties.Resources.if_onebit_32_12606;
+            this.pb_MappedMinus.Location = new System.Drawing.Point(53, 192);
+            this.pb_MappedMinus.Name = "pb_MappedMinus";
+            this.pb_MappedMinus.Size = new System.Drawing.Size(20, 20);
+            this.pb_MappedMinus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pb_MappedMinus.TabIndex = 7;
+            this.pb_MappedMinus.TabStop = false;
+            this.pb_MappedMinus.Click += new System.EventHandler(this.pb_MappedMinus_Click);
+            // 
+            // pb_DirectoryMinus
+            // 
+            this.pb_DirectoryMinus.Image = global::BackUpBear.Properties.Resources.if_onebit_32_12606;
+            this.pb_DirectoryMinus.Location = new System.Drawing.Point(53, 52);
+            this.pb_DirectoryMinus.Name = "pb_DirectoryMinus";
+            this.pb_DirectoryMinus.Size = new System.Drawing.Size(20, 20);
+            this.pb_DirectoryMinus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pb_DirectoryMinus.TabIndex = 6;
+            this.pb_DirectoryMinus.TabStop = false;
+            this.pb_DirectoryMinus.Click += new System.EventHandler(this.pb_DirectoryMinus_Click);
+            // 
+            // pb_MappedPlus
+            // 
+            this.pb_MappedPlus.Image = global::BackUpBear.Properties.Resources.if_Add_32431;
+            this.pb_MappedPlus.Location = new System.Drawing.Point(16, 192);
+            this.pb_MappedPlus.Name = "pb_MappedPlus";
+            this.pb_MappedPlus.Size = new System.Drawing.Size(20, 20);
+            this.pb_MappedPlus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pb_MappedPlus.TabIndex = 5;
+            this.pb_MappedPlus.TabStop = false;
+            this.pb_MappedPlus.Click += new System.EventHandler(this.pb_MappedPlus_Click);
+            // 
+            // pb_DirectoryAdd
+            // 
+            this.pb_DirectoryAdd.Image = global::BackUpBear.Properties.Resources.if_Add_32431;
+            this.pb_DirectoryAdd.Location = new System.Drawing.Point(16, 52);
+            this.pb_DirectoryAdd.Name = "pb_DirectoryAdd";
+            this.pb_DirectoryAdd.Size = new System.Drawing.Size(20, 20);
+            this.pb_DirectoryAdd.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pb_DirectoryAdd.TabIndex = 4;
+            this.pb_DirectoryAdd.TabStop = false;
+            this.pb_DirectoryAdd.Click += new System.EventHandler(this.pb_DirectoryAdd_Click);
+            // 
+            // lab_Bear
+            // 
+            this.lab_Bear.AutoSize = true;
+            this.lab_Bear.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lab_Bear.Location = new System.Drawing.Point(318, 166);
+            this.lab_Bear.Name = "lab_Bear";
+            this.lab_Bear.Size = new System.Drawing.Size(102, 20);
+            this.lab_Bear.TabIndex = 20;
+            this.lab_Bear.Text = "In Progress...";
+            this.lab_Bear.Visible = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(75)))), ((int)(((byte)(75)))));
-            this.ClientSize = new System.Drawing.Size(335, 323);
+            this.ClientSize = new System.Drawing.Size(350, 322);
+            this.Controls.Add(this.lab_Bear);
+            this.Controls.Add(this.pb_Bear);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.tb_BackupToDir);
             this.Controls.Add(this.but_Close);
@@ -251,10 +278,11 @@
             this.MaximizeBox = false;
             this.Name = "Form1";
             this.Text = "Backup Bear";
+            ((System.ComponentModel.ISupportInitialize)(this.pb_Bear)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_MappedMinus)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pb_DirectoryMinus)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pb_MappedPlus)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pb_DirectoryAdd)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pb_MappedMinus)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -279,6 +307,8 @@
         private System.Windows.Forms.FolderBrowserDialog fb_BackupDir;
         private System.Windows.Forms.TextBox tb_BackupToDir;
         private System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.PictureBox pb_Bear;
+        private System.Windows.Forms.Label lab_Bear;
     }
 }
 

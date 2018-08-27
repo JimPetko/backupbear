@@ -16,6 +16,7 @@ using SharpCompress.Archives.Rar;
 using SharpCompress.Archives.SevenZip;
 using System.Security.AccessControl;
 using System.Security.Principal;
+using System.Threading;
 
 namespace BackUpBear
 {
@@ -23,6 +24,8 @@ namespace BackUpBear
     {
         private string DirsToBackup;
         private string BackupToDirs;
+        private bool isFinished = false;
+
         public Form1()
         {
             InitializeComponent();
@@ -91,22 +94,50 @@ namespace BackUpBear
         
         private void But_StartBackup_Click(object sender, EventArgs e)
         {
-            progressBar1.Visible = true;
-            progressBar1.Update();
-            //check folder access for source dir
+            
+            
+            Thread thread = new Thread(new ThreadStart(StartBackup));
+            thread.Start();
+            while (!CheckThreadComplete(thread))
+            {                
+                this.Size = new Size(445, 365);                
+                pb_Bear.Visible = true;
+                lab_Bear.Visible = true;
+            }
+            this.Size = new Size(370, 365);            
+            pb_Bear.Visible = false;
+            lab_Bear.Visible = false;
+        }
+        private bool CheckThreadComplete(Thread thread)
+        {
+            if (thread.IsAlive)
+                return false;
+            Thread.Sleep(500);
+            return CheckThreadComplete(thread);
+        }
+
+        private void but_Close_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+        
+
+        private void StartBackup()
+        {
+            //check folder access for source dir            
             int index = 0;
-            string NtAccountName = System.Net.NetworkInformation.IPGlobalProperties.GetIPGlobalProperties().DomainName +@"\Administrator";
+            string NtAccountName = System.Net.NetworkInformation.IPGlobalProperties.GetIPGlobalProperties().DomainName + @"\Administrator";
             NTAccount nta = new NTAccount(NtAccountName);
             string destPath = tb_BackupToDir.Text.ToString();
-            destPath.Replace(@"\r\n","");
-            
+            destPath.Replace(@"\r\n", "");
+
             foreach (string s in list_DirToBackup.Items)
             {
                 string sourceDir = s;
-                
-                s.Replace("\r\n",string.Empty);
-                
-                Directory.CreateDirectory(tb_BackupToDir.Text.ToString() + "\\Backup");
+
+                s.Replace("\r\n", string.Empty);
+
+               
                 File.SetAttributes(destPath + "\\Backup", FileAttributes.Normal);
                 sourceDir = sourceDir.Trim('\r', '\n');
                 if (cb_Compress.Checked)
@@ -115,7 +146,7 @@ namespace BackUpBear
                     {
                         using (var archive = ZipArchive.Create())
                         {
-                            progressBar1.Update();
+                            
                             archive.AddAllFromDirectory(sourceDir);
                             archive.SaveTo(tb_BackupToDir.Text.ToString() + "\\Backup " + index + ".zip", CompressionType.Deflate);
                         }
@@ -124,7 +155,6 @@ namespace BackUpBear
                     {
                         using (var archive = ZipArchive.Create())
                         {
-                            progressBar1.Update();
                             archive.AddAllFromDirectory(sourceDir);
                             archive.SaveTo(destPath + "\\Backup " + index + ".rar", CompressionType.Rar);
                         }
@@ -133,7 +163,7 @@ namespace BackUpBear
                     {
                         using (var archive = ZipArchive.Create())
                         {
-                            
+
                             archive.AddAllFromDirectory(sourceDir);
                             archive.SaveTo(destPath + "\\Backup " + index + ".7z", CompressionType.LZMA);
                         }
@@ -141,24 +171,21 @@ namespace BackUpBear
                 }
                 else
                 {
-                    
+
                     string[] files = Directory.GetFiles(sourceDir);
- 
+
                     for (int i = 0; i < files.Length; i++)
                     {
-                        progressBar1.Update();
+                        
                         Directory.CreateDirectory(destPath + "\\Backup\\Backup " + index.ToString());
-                        File.Copy(files[i], destPath+"\\Backup\\Backup "+index.ToString()+"\\"+ Path.GetFileName(files[i]), true);
+                        File.Copy(files[i], destPath + "\\Backup\\Backup " + index.ToString() + "\\" + Path.GetFileName(files[i]), true);
                     }
                 }
                 index++;
             }
+            //show in progress stuff
+            this.isFinished = true;
             
-        }
-
-        private void but_Close_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
         }
         
     }
