@@ -19,3 +19,12 @@ C:\Users\James\Documents\Visual Studio 2015\Projects\BackupBear\backupbear\BackU
 C:\Users\James\Documents\Visual Studio 2015\Projects\BackupBear\backupbear\BackUpBear\obj\x86\Debug\BackUpBear.csproj.CopyComplete
 C:\Users\James\Documents\Visual Studio 2015\Projects\BackupBear\backupbear\BackUpBear\obj\x86\Debug\BackUpBear.exe
 C:\Users\James\Documents\Visual Studio 2015\Projects\BackupBear\backupbear\BackUpBear\obj\x86\Debug\BackUpBear.pdb
+C:\Users\James\source\repos\backupbear\BackUpBear\bin\x86\Debug\BackUpBear.exe.config
+C:\Users\James\source\repos\backupbear\BackUpBear\bin\x86\Debug\BackUpBear.exe
+C:\Users\James\source\repos\backupbear\BackUpBear\bin\x86\Debug\BackUpBear.pdb
+C:\Users\James\source\repos\backupbear\BackUpBear\obj\x86\Debug\BackUpBear.Form1.resources
+C:\Users\James\source\repos\backupbear\BackUpBear\obj\x86\Debug\BackUpBear.Properties.Resources.resources
+C:\Users\James\source\repos\backupbear\BackUpBear\obj\x86\Debug\BackUpBear.csproj.GenerateResource.cache
+C:\Users\James\source\repos\backupbear\BackUpBear\obj\x86\Debug\BackUpBear.csproj.CoreCompileInputs.cache
+C:\Users\James\source\repos\backupbear\BackUpBear\obj\x86\Debug\BackUpBear.exe
+C:\Users\James\source\repos\backupbear\BackUpBear\obj\x86\Debug\BackUpBear.pdb

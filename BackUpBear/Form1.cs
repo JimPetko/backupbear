@@ -46,16 +46,12 @@ namespace BackUpBear
 
 
         private void pb_DirectoryAdd_Click(object sender, EventArgs e)
-        {                            
+        {
+
+
             if (fb_DirToBackup.ShowDialog() == DialogResult.OK)
             {
                 DirsToBackup = fb_DirToBackup.SelectedPath;
-                int i = 0;
-                foreach(string s in list_DirToBackup.Items)
-                {                    
-                    key.SetValue("BackupSource" + i, fb_DirToBackup.SelectedPath, RegistryValueKind.String);
-                    i++;
-                }
             }
             list_DirToBackup.Items.Add(DirsToBackup + "\r\n");
 
@@ -65,13 +61,6 @@ namespace BackUpBear
         private void pb_DirectoryMinus_Click(object sender, EventArgs e)
         {
             list_DirToBackup.Items.Remove(list_DirToBackup.SelectedItem);
-            for (int i = 0; i > 1000; i++)
-            {
-                if (key.GetValue("BackupSource" + i, null) == list_DirToBackup.SelectedItem)
-                {
-                    key.SetValue("BackupSource" + i, string.Empty,RegistryValueKind.String);
-                }
-            }
         }
 
         private void pb_MappedPlus_Click(object sender, EventArgs e)
@@ -80,8 +69,7 @@ namespace BackUpBear
             {
                 BackupToDirs = fb_BackupDir.SelectedPath;
                 tb_BackupToDir.Text = BackupToDirs;
-                key.SetValue("BackupDest",fb_BackupDir.SelectedPath,RegistryValueKind.String);
-            }            
+            }
         }
 
         private void pb_MappedMinus_Click(object sender, EventArgs e)
@@ -123,17 +111,15 @@ namespace BackUpBear
 
         private void But_StartBackup_Click(object sender, EventArgs e)
         {
+            this.Size = new Size(445, 365);
+            pb_Bear.Visible = true;
+            lab_Bear.Visible = true;
+            backgroundWorker1.RunWorkerAsync();
             
-            
-            Thread thread = new Thread(new ThreadStart(StartBackup));
-            thread.Start();
-            while (!CheckThreadComplete(thread))
-            {                
-                this.Size = new Size(445, 365);                
-                pb_Bear.Visible = true;
-                lab_Bear.Visible = true;
-            }
-            this.Size = new Size(370, 365);            
+        }
+        private void backgroundWorker1_WorkComplete(object sender, RunWorkerCompletedEventArgs e)
+        {
+            this.Size = new Size(370, 365);
             pb_Bear.Visible = false;
             lab_Bear.Visible = false;
         }
@@ -149,73 +135,64 @@ namespace BackUpBear
         {
             Application.Exit();
         }
-        
 
-        private void StartBackup()
+       
+        private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
         {
-            //check folder access for source dir            
-            int index = 0;
-            string NtAccountName = System.Net.NetworkInformation.IPGlobalProperties.GetIPGlobalProperties().DomainName + @"\Administrator";
-            NTAccount nta = new NTAccount(NtAccountName);
-            string destPath = tb_BackupToDir.Text.ToString();
-            destPath.Replace(@"\r\n", "");
-
-            foreach (string s in list_DirToBackup.Items)
+            while (!backgroundWorker1.CancellationPending)
             {
-                string sourceDir = s;
+                int index = 0;
+                string NtAccountName = System.Net.NetworkInformation.IPGlobalProperties.GetIPGlobalProperties().DomainName + @"\Administrator";
+                NTAccount nta = new NTAccount(NtAccountName);
+                string destPath = tb_BackupToDir.Text.ToString();
+                destPath.Replace(@"\r\n", "");
 
-                s.Replace("\r\n", string.Empty);
-
-               
-                File.SetAttributes(destPath + "\\Backup", FileAttributes.Normal);
-                sourceDir = sourceDir.Trim('\r', '\n');
-
-                Thread thread = new Thread(new ThreadStart(Compress));
-                thread.Start();
-
-            }
-        }
-
-        private void Compress()
-        {
-            ProgressBar progressBar1 = new ProgressBar();
-            progressBar1.ForeColor = System.Drawing.Color.Firebrick;
-            progressBar1.Location = new System.Drawing.Point(14, 222);
-            progressBar1.Name = "progressBar1";
-            progressBar1.Size = new System.Drawing.Size(295, 10);
-            progressBar1.TabIndex = 18;            
-            progressBar1.Visible = true;
-
-            RegistryKey key = Registry.CurrentUser.CreateSubKey(@"SOFTWARE\JPetko\BackUpBear");
-            string destPath2 = key.GetValue("BackupDest","").ToString();
-            int index = 0;
-            
-            
-            if (cb_Compress.Checked)
-            {
                 foreach (string s in list_DirToBackup.Items)
                 {
                     string sourceDir = s;
 
                     s.Replace("\r\n", string.Empty);
 
-                    Directory.CreateDirectory(tb_BackupToDir.Text.ToString() + "\\Backup");
-                    File.SetAttributes(destPath2 + "\\Backup", FileAttributes.Normal);
-                    sourceDir = sourceDir.Trim('\r', '\n');
-                    progressBar1.Step = Directory.GetFiles(sourceDir).Length;
-                        
-                    if (cb_Compress.Checked)
-                    {                        
-                        if (radbut_Zip.Checked)
+                    if (Directory.Exists(tb_BackupToDir.Text.ToString()))
+                    {
+                        Directory.CreateDirectory(destPath + "\\Backup");
+                        File.SetAttributes(destPath + "\\Backup", FileAttributes.Normal);
+                        sourceDir = sourceDir.Trim('\r', '\n');
+                        if (cb_Compress.Checked)
                         {
-                            
-                            archive.AddAllFromDirectory(sourceDir);
-                            archive.SaveTo(tb_BackupToDir.Text.ToString() + "\\Backup " + index + ".zip", CompressionType.Deflate);
+                            if (radbut_Zip.Checked)
+                            {
+                                using (var archive = ZipArchive.Create())
+                                {
+                                    archive.AddAllFromDirectory(sourceDir);
+                                    archive.SaveTo(tb_BackupToDir.Text.ToString() + "\\Backup " + index + ".zip", CompressionType.Deflate);
+                                }
+                            }
+                            if (radbut_Rar.Checked)
+                            {
+                                using (var archive = ZipArchive.Create())
+                                {
+                                    archive.AddAllFromDirectory(sourceDir);
+                                    archive.SaveTo(destPath + "\\Backup " + index + ".rar", CompressionType.Rar);
+                                }
+                            }
+                            if (radbut_7z.Checked)
+                            {
+                                using (var archive = ZipArchive.Create())
+                                {
+                                    archive.AddAllFromDirectory(sourceDir);
+                                    archive.SaveTo(destPath + "\\Backup " + index + ".7z", CompressionType.LZMA);
+                                }
+                            }
                         }
-                        if (radbut_Rar.Checked)
+                        else
                         {
-                            archive.AddAllFromDirectory(sourceDir);
-                            archive.SaveTo(destPath + "\\Backup " + index + ".rar", CompressionType.Rar);
+                            string[] files = Directory.GetFiles(sourceDir);
+                            for (int i = 0; i < files.Length; i++)
+                            {
+                                Directory.CreateDirectory(destPath + "\\Backup\\Backup " + index.ToString());
+                                File.Copy(files[i], destPath + "\\Backup\\Backup " + index.ToString() + "\\" + Path.GetFileName(files[i]), true);
+                            }
                         }
                         if (radbut_7z.Checked)
                         {
@@ -228,38 +205,11 @@ namespace BackUpBear
                             }
                         }
                     }
-                    else
-                    {
-
-                        string[] files = Directory.GetFiles(sourceDir);
-
-                        for (int i = 0; i < files.Length; i++)
-                        {
-
-                            archive.AddAllFromDirectory(sourceDir);
-                            archive.SaveTo(destPath + "\\Backup " + index + ".7z", CompressionType.LZMA);
-                        }
-                    }
                     index++;
                 }
-                else
-                {
-
-                    string[] files = Directory.GetFiles(sourceDir);
-
-                    for (int i = 0; i < files.Length; i++)
-                    {
-                        
-                        Directory.CreateDirectory(destPath + "\\Backup\\Backup " + index.ToString());
-                        File.Copy(files[i], destPath + "\\Backup\\Backup " + index.ToString() + "\\" + Path.GetFileName(files[i]), true);
-                    }
-                }
-                index++;
+                backgroundWorker1.CancelAsync();
             }
-            //show in progress stuff
-            this.isFinished = true;
-            
+
         }
-        
     }
 }

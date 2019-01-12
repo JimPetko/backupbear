@@ -48,6 +48,7 @@
             this.pb_MappedPlus = new System.Windows.Forms.PictureBox();
             this.pb_DirectoryAdd = new System.Windows.Forms.PictureBox();
             this.lab_Bear = new System.Windows.Forms.Label();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             ((System.ComponentModel.ISupportInitialize)(this.pb_Bear)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pb_MappedMinus)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pb_DirectoryMinus)).BeginInit();
@@ -249,6 +250,12 @@
             this.lab_Bear.Text = "In Progress...";
             this.lab_Bear.Visible = false;
             // 
+            // backgroundWorker1
+            // 
+            this.backgroundWorker1.WorkerSupportsCancellation = true;
+            this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
+            this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker1_WorkComplete);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -309,6 +316,7 @@
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.PictureBox pb_Bear;
         private System.Windows.Forms.Label lab_Bear;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
     }
 }
 
